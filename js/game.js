@@ -4,11 +4,9 @@ var ctx = cvs.getContext("2d");
 // Установка ширины и высоты canvas равными ширине и высоте окна браузер
 cvs.width = window.innerWidth;
 cvs.height = window.innerHeight;
-// cvs.height = 512; //фіксований розмір
-// cvs.width = 288*3-20; //фіксований розмір
-// cvs.width = Math.floor(cvs.height*16/9); //фіксований розмір
-// cvs.width = document.getElementById("game-wrapper").clientWidth;
-// cvs.height = document.getElementById("game-wrapper").clientHeight;
+var kx = Math.floor(cvs.width);
+var ky = Math.floor(cvs.height);
+var kz = kx/kx;
 
 // ---
 var bg = new Image();
@@ -41,17 +39,19 @@ function moveUp(){
     if(!procesGame){
         procesGame = true;
     }
-    fly.play();
-    yPos -= 25;
+    if(procesGame){
+        fly.play();
+        yPos -= 25;
+    }
 }
 
 function draw(){
     for(var i=0; i<5; i++){
-        ctx.drawImage(bg, xBg+(bg.width-10)*i, 0,);
+        ctx.drawImage(bg, xBg+bg.height*kz*i, 0, bg.height*kz, ky);
     }
 
     if(procesGame){
-        xBg = (xBg <= -bg.width) ? xBg + (bg.width-10) : xBg - 1;
+        xBg = (xBg <= -bg.height*kz) ? xBg + (bg.height*kz) : xBg - 1;
 
         ctx.drawImage(bird, 100, 100, cvs.height/12, cvs.height/15);
 
@@ -61,10 +61,10 @@ function draw(){
             ctx.drawImage(pipeDown, pipe[i].x, pipe[i].y + cvs.height*8/10,cvs.width/15, cvs.height*8/10-gap);
             pipe[i].x--;
 
-            if(pipe[i].x == Math.floor(cvs.width*3/5)){//новое препятствие
+            if(pipe[i].x == Math.floor(kx-(cvs.height*8/10-gap+cvs.width/15))){//новое препятствие
                 pipe.push({
                     x: cvs.width,
-                    y: Math.floor(Math.random()* (cvs.height*8/10-gap))-(cvs.height*8/10-gap)
+                    y: Math.floor(Math.random()*(cvs.height*8/10-gap))-(cvs.height*8/10-gap)
                 })
             }
         }
@@ -75,12 +75,13 @@ function draw(){
 
    // --- Fg ---
     for(var i=0; i<5; i++){
-        ctx.drawImage(fg, xBg+(fg.width-10)*i, cvs.height*8/10,);
+        // ctx.drawImage(bg, xBg+bg.height*kz*i, 0, bg.height*kz, ky);
+        ctx.drawImage(fg, xBg+(bg.height*kz)*i, ky*8/10, bg.height*kz, ky*2/10);
     }
     // --- Text ---
     ctx.fillStyle = "#000";
     ctx.font = "24px mon";
-    ctx.fillText("Score: "+xBg, 10, cvs.height-50)
+    ctx.fillText("Score: "+xBg, 30, ky-ky*1/10+12)
     requestAnimationFrame(draw);
 }
 // При нажатии на какую либо кнопку
