@@ -4,8 +4,9 @@ var ctx = cvs.getContext("2d");
 // Установка ширины и высоты canvas равными ширине и высоте окна браузер
 //cvs.width = window.innerWidth;
 //cvs.height = window.innerHeight;
-cvs.width = 288*3-20; //фіксований розмір
-cvs.height = 512;
+cvs.height = 512; //фіксований розмір
+// cvs.width = 288*3-20; //фіксований розмір
+cvs.width = Math.floor(cvs.height*16/9); //фіксований розмір
 // cvs.width = document.getElementById("game-wrapper").clientWidth;
 // cvs.height = document.getElementById("game-wrapper").clientHeight;
 
@@ -45,7 +46,7 @@ function moveUp(){
 }
 
 function draw(){
-    for(var i=0; i<4; i++){
+    for(var i=0; i<5; i++){
         ctx.drawImage(bg, xBg+(bg.width-10)*i, 0,);
     }
 
@@ -73,7 +74,7 @@ function draw(){
     
 
    // --- Fg ---
-    for(var i=0; i<4; i++){
+    for(var i=0; i<5; i++){
         ctx.drawImage(fg, xBg+(fg.width-10)*i, cvs.height*8/10,);
     }
     // --- Text ---
