@@ -2,11 +2,11 @@ var cvs = document.getElementById("canvas");
 var ctx = cvs.getContext("2d");
 
 // Установка ширины и высоты canvas равными ширине и высоте окна браузер
-//cvs.width = window.innerWidth;
-//cvs.height = window.innerHeight;
-cvs.height = 512; //фіксований розмір
+cvs.width = window.innerWidth;
+cvs.height = window.innerHeight;
+// cvs.height = 512; //фіксований розмір
 // cvs.width = 288*3-20; //фіксований розмір
-cvs.width = Math.floor(cvs.height*16/9); //фіксований розмір
+// cvs.width = Math.floor(cvs.height*16/9); //фіксований розмір
 // cvs.width = document.getElementById("game-wrapper").clientWidth;
 // cvs.height = document.getElementById("game-wrapper").clientHeight;
 
