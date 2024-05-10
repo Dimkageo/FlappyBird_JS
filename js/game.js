@@ -123,12 +123,11 @@ function draw(){
     ctx.fillStyle = "#000";
     ctx.font = "24px mon";
     ctx.fillText("Score: "+score, 50, ky-ky*1/10+12);
-    ctx.fillText("kx: "+kx+ ' ky'+ky , 150, ky-ky*1/10+12);
     requestAnimationFrame(draw);
 }
 // При нажатии на какую либо кнопку
 document.addEventListener("keydown", moveUp);
-document.addEventListener("touchstart", moveUp);//реакция на касание экрана
+// document.addEventListener("touchstart", moveUp);//реакция на касание экрана
 document.addEventListener("click", moveUp);//реакция на клик мыши
 
 // Загрузка изображений и звуков
