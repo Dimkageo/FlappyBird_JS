@@ -26,7 +26,7 @@ var score_audio = new Audio();
 var procesGame = false;
 var gameOver = false;
 var xBg = 0;
-var gap=cvs.height/15*4; //ворота
+var gap=cvs.height/15*5; //ворота
 var pipe = [];
 //----
 pipe[0]={
